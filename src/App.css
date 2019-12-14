@@ -38,5 +38,5 @@
 }
 
 *, ::after, ::before {
-  box-sizing: unset;
+  box-sizing: unset !important;
 }

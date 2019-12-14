@@ -3,8 +3,9 @@ import React from 'react';
 import format from 'date-fns/format';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-import Movie from '../model/movie.model';
 import { EndpointConstant } from '../constant/endpoint.constant';
+import { FormatConstant } from '../constant/format.constant';
+import Movie from '../model/movie.model';
 
 import 'react-circular-progressbar/dist/styles.css';
 import './movie.component.css';
@@ -36,7 +37,7 @@ export default class MovieComponent extends React.Component<MovieProps> {
                                 })}/>
             <h5>{movie.title}</h5>
           </div>
-          <h6>{format(new Date(movie.release_date), 'MMMM dd yyyy')}</h6>
+          <h6>{format(new Date(movie.release_date), FormatConstant.DATE_FORMAT)}</h6>
           <span>{movie.overview}</span>
         </div>
       </div>
