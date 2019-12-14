@@ -3,9 +3,9 @@ import React from 'react';
 import format from 'date-fns/format';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-import { EndpointConstant } from '../constant/endpoint.constant';
-import { FormatConstant } from '../constant/format.constant';
-import Movie from '../model/movie.model';
+import { EndpointConstant } from '../../constant/endpoint.constant';
+import { FormatConstant } from '../../constant/format.constant';
+import Movie from '../../model/movie.model';
 
 import 'react-circular-progressbar/dist/styles.css';
 import './movie.component.css';

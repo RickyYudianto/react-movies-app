@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Menu, Segment } from 'semantic-ui-react';
 
-import { MenuConstant } from '../constant/menu.constant';
+import { MenuConstant } from '../../constant/menu.constant';
 
 import 'semantic-ui-css/semantic.min.css';
 

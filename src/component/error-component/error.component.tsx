@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LabelConstant } from '../constant/label.constant';
+import { LabelConstant } from '../../constant/label.constant';
 
 import './error.component.css';
 

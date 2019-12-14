@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Pagination } from 'react-bootstrap';
 import { Dispatch } from 'redux';
 
-import * as movieActions from '../action/movie.action';
-import ErrorComponent from '../component/error.component';
-import LoadingComponent from '../component/loading.component';
-import MovieComponent from '../component/movie.component';
-import { LabelConstant } from '../constant/label.constant';
-import { AppState } from '../helper/reducer.index';
-import { MovieActionTypes } from '../type/movie.type';
+import * as movieActions from '../../action/movie.action';
+import ErrorComponent from '../../component/error-component/error.component';
+import LoadingComponent from '../../component/loading-component/loading.component';
+import MovieComponent from '../../component/movie-component/movie.component';
+import { LabelConstant } from '../../constant/label.constant';
+import { AppState } from '../../helper/reducer.index';
+import { MovieActionTypes } from '../../type/movie.type';
 
 import './movie.container.css';
 

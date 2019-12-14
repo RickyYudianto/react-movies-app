@@ -2,11 +2,11 @@ import React from 'react';
 
 import Notifications from 'react-notify-toast';
 
-import MovieContainer from './container/movie.container';
+import MovieContainer from './container/movie-container/movie.container';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import MenuComponent from './component/menu.component';
+import MenuComponent from './component/menu-component/menu.component';
 
 export default class App extends React.Component {
   render() {
