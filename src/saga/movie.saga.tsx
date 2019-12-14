@@ -40,7 +40,7 @@ export function* prevPageMovies() {
 }
 
 export function* calledError(message: string) {
-  notify.show(message, 'error', 2000);
+  yield notify.show(message, 'error', 2000);
 }
 
 export function* movieSaga() {

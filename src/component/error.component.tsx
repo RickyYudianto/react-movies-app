@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Spinner from 'react-bootstrap/Spinner';
+import { LabelConstant } from '../constant/label.constant';
 
 import './error.component.css';
 
@@ -15,8 +15,8 @@ export default class ErrorComponent extends React.Component {
             <div className='bee-sketch blue'></div>
           </div>
 
-        <h1>Error:
-          <small>Oops Something Went Wrong</small></h1>
+        <h1>{LabelConstant.ERROR}:
+          <small>{LabelConstant.SOMETHING_WENT_WRONG}</small></h1>
         </div>
       </div>
     );
