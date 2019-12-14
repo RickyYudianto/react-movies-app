@@ -9,9 +9,17 @@ export const NEXT_PAGE_MOVIE: string = 'NEXT_PAGE_MOVIE';
 export const MAX_PAGE_MOVIE: string = 'MAX_PAGE_MOVIE';
 
 export interface MovieState {
-  movies: Array<Movie>
-  page: number
-  maxPage: number
+  list: {
+    movies: Array<Movie>
+    page: number
+    maxPage: number
+  }
+  nowPlaying: {
+    movies: Array<Movie>
+    page: number
+    maxPage: number
+  }
+  movieDetail: Movie
   loading: boolean
 }
 

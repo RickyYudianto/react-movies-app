@@ -1,10 +1,19 @@
 import { AppState } from '../helper/reducer.index';
 import { MovieState, MovieActionTypes, FETCH_MOVIE, FETCH_MOVIE_SUCCESS, FETCH_MOVIE_FAILED } from '../type/movie.type'
+import Movie from '../model/movie.model';
 
 const initialState: MovieState = {
-  movies: [],
-  page: 1,
-  maxPage: 1,
+  list: {
+    movies: [],
+    page: 1,
+    maxPage: 1
+  },
+  nowPlaying: {
+    movies: [],
+    page: 1,
+    maxPage: 1
+  },
+  movieDetail: new Movie(),
   loading: false
 }
 
@@ -17,9 +26,11 @@ export function movieReducer(state = initialState, action: MovieActionTypes): Mo
     }
     case FETCH_MOVIE_SUCCESS: {
       return Object.assign({}, state, {
-        movies: [...action.payload],
-        maxPage: action.maxPage,
-        page: action.page,
+        list: Object.assign({}, state.list, {
+          movies: [...action.payload],
+          maxPage: action.maxPage,
+          page: action.page
+        }),
         loading: false
       });
     }
@@ -33,5 +44,8 @@ export function movieReducer(state = initialState, action: MovieActionTypes): Mo
   }
 }
 
-export const getPage = (state: AppState) => state.movieReducer.page;
-export const getMaxPage = (state: AppState) => state.movieReducer.maxPage;
+export const getListPage = (state: AppState) => state.movieReducer.list.page;
+export const getListMaxPage = (state: AppState) => state.movieReducer.list.maxPage;
+export const getNowPlayingPage = (state: AppState) => state.movieReducer.nowPlaying.page;
+export const getNowPlayingMaxPage = (state: AppState) => state.movieReducer.nowPlaying.maxPage;
+export const getDetailMovie = (state: AppState) => state.movieReducer.movieDetail;

@@ -5,6 +5,7 @@ import { Menu, Segment } from 'semantic-ui-react';
 import { MenuConstant } from '../../constant/menu.constant';
 
 import 'semantic-ui-css/semantic.min.css';
+import './menu.component.css';
 
 export default class MenuComponent extends React.Component {
   state = { activeItem: MenuConstant.LIST }
@@ -26,11 +27,6 @@ export default class MenuComponent extends React.Component {
             name={MenuConstant.NOW_PLAYING}
             active={activeItem === MenuConstant.NOW_PLAYING}
             onClick={() => this.handleItemClick(MenuConstant.NOW_PLAYING)}
-          />
-          <Menu.Item
-            name={MenuConstant.UP_COMING}
-            active={activeItem === MenuConstant.UP_COMING}
-            onClick={() => this.handleItemClick(MenuConstant.UP_COMING)}
           />
           <Menu.Menu position='right'>
             <Menu.Item

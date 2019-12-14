@@ -4,7 +4,7 @@ import { all, put, takeEvery, select } from 'redux-saga/effects';
 import * as actions from '../action/movie.action';
 import { convertJsonToArrayOfObject } from '../helper/util';
 import Movie from '../model/movie.model';
-import { getMaxPage, getPage } from '../reducer/movie.reducer';
+import { getListMaxPage, getListPage } from '../reducer/movie.reducer';
 import * as services from '../service/movie.service';
 import { FETCH_MOVIE, NEXT_PAGE_MOVIE, PREV_PAGE_MOVIE } from '../type/movie.type'
 
@@ -21,8 +21,8 @@ function* fetchMovies(params: any = {}) {
 }
 
 export function* nextPageMovies() {
-  const page = yield select(getPage);
-  const maxPage = yield select(getMaxPage);
+  const page = yield select(getListPage);
+  const maxPage = yield select(getListMaxPage);
   const params = {
     page: page+1 > maxPage ? maxPage : page+1
   };
@@ -31,7 +31,7 @@ export function* nextPageMovies() {
 }
 
 export function* prevPageMovies() {
-  const page = yield select(getPage);
+  const page = yield select(getListPage);
   const params = {
     page: page-1 < 1 ? 1 : page-1
   };

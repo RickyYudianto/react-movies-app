@@ -20,17 +20,19 @@ export default class MovieComponent extends React.Component<MovieProps> {
     const { movie } = this.props;
 
     const percentage = movie.vote_average;
+    const imagePath = movie.poster_path ? `${EndpointConstant.IMAGE_URL + movie.poster_path}` : require('./../../no-poster-available.jpg');
+
     return (
       <div className='movie-wrapper'>
         <img className='movie-image'
-              alt={`${EndpointConstant.IMAGE_URL + movie.poster_path}`}
-              src={`${EndpointConstant.IMAGE_URL + movie.poster_path}`} />
+              alt={imagePath}
+              src={imagePath} />
 
         <div className='desc-wrapper'>
           <div className='movie-desc-header-wrapper'>
             <CircularProgressbar className='rate' value={percentage} maxValue={10}
-                                text={`${percentage * 10}%`} background backgroundPadding={6}
-                                styles={buildStyles({
+                                 text={`${percentage * 10}%`} background backgroundPadding={6}
+                                 styles={buildStyles({
                                   textColor: 'white',
                                   pathColor: this.generateRateColor(percentage),
                                   backgroundColor: 'black'

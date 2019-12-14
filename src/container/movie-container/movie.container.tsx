@@ -15,7 +15,7 @@ import { MovieActionTypes } from '../../type/movie.type';
 import './movie.container.css';
 
 const mapStateToProps = (state: AppState) => {
-  const { movies, page, maxPage, loading } = state.movieReducer;
+  const { list: { movies, page, maxPage }, loading } = state.movieReducer;
 
   return { movies, page, maxPage, loading };
 }
@@ -38,14 +38,16 @@ class MovieContainer extends React.Component<ReduxType> {
   render() {
     const { movies, page, maxPage, loading } = this.props;
     
-    if (loading) { return (<LoadingComponent></LoadingComponent>) }
-
-    if (movies.length <= 0) { return (<ErrorComponent></ErrorComponent>) }
+    if (loading) {
+      return (<LoadingComponent></LoadingComponent>)
+    } else {
+      if (movies.length <= 0) { return (<ErrorComponent></ErrorComponent>) }
+    }
 
     const movieList = movies.map((movie) => <MovieComponent key={movie.id} movie={movie}></MovieComponent>);
     return (
       <div className='movie-container'>
-        <h2>{LabelConstant.NOW_PLAYING}</h2>
+        <h2>{LabelConstant.LIST}</h2>
         <div className='movie-container-body'>
           {movieList}
         </div>

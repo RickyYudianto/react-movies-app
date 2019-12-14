@@ -3,5 +3,4 @@ export class MenuConstant {
   public static readonly LOGIN: string = 'login';
   public static readonly NOW_PLAYING: string = 'now-playing';
   public static readonly REGISTER: string = 'register';
-  public static readonly UP_COMING: string = 'up-coming';
 }

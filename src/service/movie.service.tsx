@@ -2,6 +2,9 @@ import { EndpointConstant } from '../constant/endpoint.constant';
 import * as apiHelper from '../helper/api.helper';
 
 export async function getDiscoverMovies(params: any = {}) {
+  params = Object.assign({}, params, {
+    sort_by: 'release_date.desc'
+  });
   return await apiHelper.get(EndpointConstant.DISCOVER + EndpointConstant.MOVIE, params);
 }
 
