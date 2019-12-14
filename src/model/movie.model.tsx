@@ -10,6 +10,7 @@ export default class Movie {
   @Expose() original_title: string = '';
   @Expose() genre_ids: Array<number> = [];
   @Expose() title: string = '';
+  @Expose() vote_average: number = 0;
   @Expose() overview: string = '';
   @Expose() release_date: Date = new Date();
 }
