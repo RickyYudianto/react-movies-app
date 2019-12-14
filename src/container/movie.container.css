@@ -3,3 +3,15 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.pagination-prev {
+  margin-right: 5px;
+}
+
+.pagination-next {
+  margin-left: 5px;
+}
+
+.pagination-wrapper {
+  display: flex;
+}

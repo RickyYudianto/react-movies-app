@@ -32,10 +32,12 @@
 }
 
 h5 {
+  font-size: 0.83em !important;
   margin: 2px 5px;
 }
 
 h6 {
+  font-size: 0.67em !important;
   margin: 0 0 5px 0;
 
   color: darkred;
