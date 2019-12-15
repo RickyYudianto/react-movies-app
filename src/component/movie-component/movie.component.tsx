@@ -2,9 +2,12 @@ import React from 'react';
 
 import format from 'date-fns/format';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { Link } from 'react-router-dom';
 
 import { EndpointConstant } from '../../constant/endpoint.constant';
 import { FormatConstant } from '../../constant/format.constant';
+import { LabelConstant } from '../../constant/label.constant';
+import { PathConstant } from '../../constant/path.constant';
 import Movie from '../../model/movie.model';
 
 import 'react-circular-progressbar/dist/styles.css';
@@ -40,7 +43,10 @@ export default class MovieComponent extends React.Component<MovieProps> {
             <h5>{movie.title}</h5>
           </div>
           <h6>{format(new Date(movie.release_date), FormatConstant.DATE_FORMAT)}</h6>
-          <span>{movie.overview}</span>
+          <span className='movie-overview'>{movie.overview}</span>
+          <div className='movie-footer'>
+            <Link className='link' to={PathConstant.MOVIE + PathConstant.DETAIL + '/' + movie.id}>{LabelConstant.MORE_INFO}</Link>
+          </div>
         </div>
       </div>
     );

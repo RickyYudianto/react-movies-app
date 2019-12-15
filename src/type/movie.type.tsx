@@ -15,6 +15,10 @@ export const PREV_NOW_PLAYING_PAGE_MOVIE: string = 'PREV_NOW_PLAYING_PAGE_MOVIE'
 export const NEXT_NOW_PLAYING_PAGE_MOVIE: string = 'NEXT_NOW_PLAYING_PAGE_MOVIE';
 export const MAX_NOW_PLAYING_PAGE_MOVIE: string = 'MAX_NOW_PLAYING_PAGE_MOVIE';
 
+export const FETCH_DETAIL_MOVIE: string = 'FETCH_DETAIL_MOVIE';
+export const FETCH_DETAIL_MOVIE_SUCCESS: string = 'FETCH_DETAIL_MOVIE_SUCCESS';
+export const FETCH_DETAIL_MOVIE_FAILED: string = 'FETCH_DETAIL_MOVIE_FAILED';
+
 export interface MovieState {
   list: {
     movies: Array<Movie>
@@ -28,7 +32,10 @@ export interface MovieState {
     maxPage: number
     loading: boolean
   }
-  movieDetail: Movie
+  movieDetail: {
+    movie: Movie
+    loading: boolean
+  }
 }
 
 interface FetchMovieAction extends AnyAction {
@@ -85,6 +92,20 @@ interface SetNowPlayingMaxPageMovieAction  extends AnyAction {
   type: typeof MAX_NOW_PLAYING_PAGE_MOVIE
 }
 
+interface FetchDetailMovieAction extends AnyAction {
+  type: typeof FETCH_DETAIL_MOVIE
+  movieId: string
+}
+
+interface FetchDetailMovieSuccessAction extends AnyAction {
+  type: typeof FETCH_DETAIL_MOVIE_SUCCESS
+  payload: Movie
+}
+
+interface FetchDetailMovieFailedAction extends AnyAction {
+  type: typeof FETCH_DETAIL_MOVIE_FAILED
+}
+
 export type MovieActionTypes =
   FetchMovieAction
   | FetchMovieSuccessAction
@@ -97,4 +118,7 @@ export type MovieActionTypes =
   | FetchNowPlayingMovieFailedAction
   | PrevNowPlayingPageMovieAction
   | NextNowPlayingPageMovieAction
-  | SetNowPlayingMaxPageMovieAction;
+  | SetNowPlayingMaxPageMovieAction
+  | FetchDetailMovieAction
+  | FetchDetailMovieSuccessAction
+  | FetchDetailMovieFailedAction;

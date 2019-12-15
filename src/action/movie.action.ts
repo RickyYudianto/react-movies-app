@@ -66,3 +66,23 @@ export function prevNowPlayingPageAction(): movieActionTypes.MovieActionTypes {
     type: movieActionTypes.PREV_NOW_PLAYING_PAGE_MOVIE
   }
 }
+
+export function fetchDetailMovieAction(movieId: string): movieActionTypes.MovieActionTypes {
+  return {
+    type: movieActionTypes.FETCH_DETAIL_MOVIE,
+    movieId
+  }
+}
+
+export function fetchDetailMovieSuccessAction(payload: Movie): movieActionTypes.MovieActionTypes {
+  return {
+    type: movieActionTypes.FETCH_DETAIL_MOVIE_SUCCESS,
+    payload
+  }
+}
+
+export function fetchDetailMovieFailedAction(): movieActionTypes.MovieActionTypes {
+  return {
+    type: movieActionTypes.FETCH_DETAIL_MOVIE_FAILED
+  }
+}

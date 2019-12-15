@@ -61,9 +61,32 @@ span {
   text-overflow: ellipsis;
 }
 
+.movie-overview {
+  height: 105px;
+}
+
 .rate {
   width: 40px;
   min-width: 40px;
   height: 40px;
   min-height: 40px;
+}
+
+.movie-footer {
+  width: 100%;
+
+  text-align: right;
+}
+
+.link {
+  color: darkslategrey;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.link:hover {
+  color: white;
+  background-color: darkslategrey;
+
+  text-decoration: none;
 }

@@ -2,7 +2,7 @@ import { notify } from 'react-notify-toast';
 import { all, put, takeEvery, select } from 'redux-saga/effects';
 
 import * as actions from '../action/movie.action';
-import { convertJsonToArrayOfObject } from '../helper/util';
+import { convertJsonToArrayOfObject, convertJsonToObject } from '../helper/util';
 import Movie from '../model/movie.model';
 import { getListMaxPage, getListPage, getNowPlayingMaxPage, getNowPlayingPage } from '../reducer/movie.reducer';
 import * as services from '../service/movie.service';
@@ -75,6 +75,18 @@ export function* prevNowPlayingPageMovies() {
   yield fetchNowPlayingMovies(params)
 }
 
+export function* fetchDetailMovie(action: any) {
+  try {
+    const response = yield services.getMovieDetail(action.movieId);
+    const movie: Movie = convertJsonToObject(Movie, response.data);
+
+    yield put(actions.fetchDetailMovieSuccessAction(movie));
+  } catch (error) {
+    yield put(actions.fetchDetailMovieFailedAction());
+    yield calledError(error.message);
+  }
+}
+
 export function* calledError(message: string) {
   yield notify.show(message, 'error', 2000);
 }
@@ -98,6 +110,8 @@ export function* movieSaga() {
 
     takeEvery(movieActionTypes.FETCH_NOW_PLAYING_MOVIE, fetchNowPlayingMovies),
     takeEvery(movieActionTypes.NEXT_NOW_PLAYING_PAGE_MOVIE, nextNowPlayingPageMovies),
-    takeEvery(movieActionTypes.PREV_NOW_PLAYING_PAGE_MOVIE, prevNowPlayingPageMovies)
+    takeEvery(movieActionTypes.PREV_NOW_PLAYING_PAGE_MOVIE, prevNowPlayingPageMovies),
+
+    takeEvery(movieActionTypes.FETCH_DETAIL_MOVIE, fetchDetailMovie)
   ]);
 }
