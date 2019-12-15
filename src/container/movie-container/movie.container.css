@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+h2 {
+  animation: bounce-in 2s;
+}
+
 .pagination-prev {
   margin-right: 5px;
 }
