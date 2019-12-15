@@ -1,43 +1,47 @@
 import React from 'react';
 
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import { Menu, Segment } from 'semantic-ui-react';
 
 import { MenuConstant } from '../../constant/menu.constant';
+import { PathConstant } from '../../constant/path.constant';
 
 import 'semantic-ui-css/semantic.min.css';
 import './menu.component.css';
 
-export default class MenuComponent extends React.Component {
-  state = { activeItem: MenuConstant.LIST }
+class MenuComponent extends React.Component<RouteComponentProps> {
 
-  handleItemClick = (name: string) => this.setState({ activeItem: name })
+  handleItemClick(path: string) {    
+    this.props.history.push(path);
+    
+  }
 
   render() {
-    const { activeItem } = this.state
+    const { pathname } = this.props.history.location;
 
     return (
       <div>
         <Menu pointing secondary>
           <Menu.Item
             name={MenuConstant.LIST}
-            active={activeItem === MenuConstant.LIST}
-            onClick={() => this.handleItemClick(MenuConstant.LIST)}
+            active={pathname === PathConstant.MOVIE + PathConstant.LIST}
+            onClick={() => this.handleItemClick(PathConstant.MOVIE + PathConstant.LIST)}
           />
           <Menu.Item
             name={MenuConstant.NOW_PLAYING}
-            active={activeItem === MenuConstant.NOW_PLAYING}
-            onClick={() => this.handleItemClick(MenuConstant.NOW_PLAYING)}
+            active={pathname === PathConstant.MOVIE + PathConstant.NOW_PLAYING}
+            onClick={() => this.handleItemClick(PathConstant.MOVIE + PathConstant.NOW_PLAYING)}
           />
           <Menu.Menu position='right'>
             <Menu.Item
               name={MenuConstant.LOGIN}
-              active={activeItem === MenuConstant.LOGIN}
-              onClick={() => this.handleItemClick(MenuConstant.LOGIN)}
+              active={pathname === PathConstant.LOGIN}
+              onClick={() => this.handleItemClick(PathConstant.LOGIN)}
             />
             <Menu.Item
               name={MenuConstant.REGISTER}
-              active={activeItem === MenuConstant.REGISTER}
-              onClick={() => this.handleItemClick(MenuConstant.REGISTER)}
+              active={pathname === PathConstant.REGISTER}
+              onClick={() => this.handleItemClick(PathConstant.REGISTER)}
             />
           </Menu.Menu>
         </Menu>
@@ -49,3 +53,4 @@ export default class MenuComponent extends React.Component {
     )
   }
 }
+export default withRouter(MenuComponent);

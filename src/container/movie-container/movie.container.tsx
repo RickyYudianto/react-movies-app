@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { Pagination } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 import { Dispatch } from 'redux';
 
 import * as movieActions from '../../action/movie.action';
@@ -13,30 +14,50 @@ import { AppState } from '../../helper/reducer.index';
 import { MovieActionTypes } from '../../type/movie.type';
 
 import './movie.container.css';
+import { MenuConstant } from '../../constant/menu.constant';
 
-const mapStateToProps = (state: AppState) => {
-  const { list: { movies, page, maxPage }, loading } = state.movieReducer;
+interface MatchParams {
+  menu: string;
+}
 
-  return { movies, page, maxPage, loading };
+interface MatchProps extends RouteComponentProps<MatchParams> {
+  menu: string;
+}
+
+const mapStateToProps = (state: AppState, route: MatchProps) => {
+  const { list, nowPlaying } = state.movieReducer;
+  const { menu } = route;
+
+  return { list, nowPlaying, menu };
 }
 
 const mapDispatcherToProps = (dispatch: Dispatch<MovieActionTypes>) => {
   return {
       fetchMovies: () => dispatch(movieActions.fetchMovieAction()),
-      nextPage: () => dispatch(movieActions.nextPageAction()),
-      prevPage: () => dispatch(movieActions.prevPageAction())
+      nextMoviePage: () => dispatch(movieActions.nextMoviePageAction()),
+      prevMoviePage: () => dispatch(movieActions.prevMoviePageAction()),
+
+      fetchNowPlaying: () => dispatch(movieActions.fetchNowPlayingMovieAction()),
+      nextNowPlayingPage: () => dispatch(movieActions.nextNowPlayingPageAction()),
+      prevNowPlayingPage: () => dispatch(movieActions.prevNowPlayingPageAction())
   }
 }
 
 type ReduxType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatcherToProps>;
 
-class MovieContainer extends React.Component<ReduxType> {
+class MovieContainer extends React.Component<ReduxType, MatchProps> {
   componentDidMount() {
-    this.props.fetchMovies();
+    this.isMoviePage() ? this.props.fetchMovies() : this.props.fetchNowPlaying();
+  }
+
+  componentDidUpdate(prevProps: any, prevState: any, snapshot: any) {
+    if (prevProps.menu !== this.props.menu) {
+      this.isMoviePage() ? this.props.fetchMovies() : this.props.fetchNowPlaying();
+    }
   }
 
   render() {
-    const { movies, page, maxPage, loading } = this.props;
+    const { movies, page, maxPage, loading } = this.getMovieData();
     
     if (loading) {
       return (<LoadingComponent></LoadingComponent>)
@@ -47,7 +68,7 @@ class MovieContainer extends React.Component<ReduxType> {
     const movieList = movies.map((movie) => <MovieComponent key={movie.id} movie={movie}></MovieComponent>);
     return (
       <div className='movie-container'>
-        <h2>{LabelConstant.LIST}</h2>
+        <h2>{this.isMoviePage() ? LabelConstant.LIST : LabelConstant.NOW_PLAYING}</h2>
         <div className='movie-container-body'>
           {movieList}
         </div>
@@ -64,11 +85,23 @@ class MovieContainer extends React.Component<ReduxType> {
   }
 
   onNextPage() {
-    this.props.nextPage();
+    this.isMoviePage() ? this.props.nextMoviePage() : this.props.nextNowPlayingPage();
   }
 
   onPrevPage() {
-    this.props.prevPage();
+    this.isMoviePage() ? this.props.prevMoviePage() : this.props.prevNowPlayingPage();
   }
+
+  getMovieData() {
+    const { list, nowPlaying } = this.props;
+
+    return this.isMoviePage() ? list : nowPlaying;
+  }
+
+  isMoviePage() {
+    const { menu } = this.props;
+    return menu === MenuConstant.LIST;
+  }
+
 }
 export default connect(mapStateToProps, mapDispatcherToProps)(MovieContainer);

@@ -1,42 +1,71 @@
 import { AppState } from '../helper/reducer.index';
-import { MovieState, MovieActionTypes, FETCH_MOVIE, FETCH_MOVIE_SUCCESS, FETCH_MOVIE_FAILED } from '../type/movie.type'
+import * as movieActionTypes from '../type/movie.type'
 import Movie from '../model/movie.model';
 
-const initialState: MovieState = {
+const initialState: movieActionTypes.MovieState = {
   list: {
     movies: [],
     page: 1,
-    maxPage: 1
+    maxPage: 1,
+    loading: false
   },
   nowPlaying: {
     movies: [],
     page: 1,
-    maxPage: 1
+    maxPage: 1,
+    loading: false
   },
-  movieDetail: new Movie(),
-  loading: false
+  movieDetail: new Movie()
 }
 
-export function movieReducer(state = initialState, action: MovieActionTypes): MovieState {
+export function movieReducer(state = initialState, action: movieActionTypes.MovieActionTypes): movieActionTypes.MovieState {
   switch (action.type) {
-    case FETCH_MOVIE: {
+    case movieActionTypes.FETCH_MOVIE: {
       return Object.assign({}, state, {
-        loading: true
+        list: Object.assign({}, state.list, {
+          loading: true
+        })
       });
     }
-    case FETCH_MOVIE_SUCCESS: {
+    case movieActionTypes.FETCH_MOVIE_SUCCESS: {
       return Object.assign({}, state, {
         list: Object.assign({}, state.list, {
           movies: [...action.payload],
           maxPage: action.maxPage,
-          page: action.page
-        }),
-        loading: false
+          page: action.page,
+          loading: false
+        })
       });
     }
-    case FETCH_MOVIE_FAILED: {
+    case movieActionTypes.FETCH_MOVIE_FAILED: {
       return Object.assign({}, state, {
-        loading: false
+        list: Object.assign({}, state.list, {
+          loading: false
+        })
+      });
+    }
+    case movieActionTypes.FETCH_NOW_PLAYING_MOVIE: {
+      return Object.assign({}, state, {
+        nowPlaying: Object.assign({}, state.nowPlaying, {
+          loading: true
+        })
+      });
+    }
+    case movieActionTypes.FETCH_NOW_PLAYING_MOVIE_SUCCESS: {
+      return Object.assign({}, state, {
+        nowPlaying: Object.assign({}, state.nowPlaying, {
+          movies: [...action.payload],
+          maxPage: action.maxPage,
+          page: action.page,
+          loading: false
+        })
+      });
+    }
+    case movieActionTypes.FETCH_NOW_PLAYING_MOVIE_FAILED: {
+      return Object.assign({}, state, {
+        nowPlaying: Object.assign({}, state.nowPlaying, {
+          loading: false
+        })
       });
     }
     default:
