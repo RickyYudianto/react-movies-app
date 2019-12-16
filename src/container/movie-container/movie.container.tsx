@@ -62,7 +62,7 @@ class MovieContainer extends React.Component<ReduxType, MatchProps> {
     if (loading) {
       return (<LoadingComponent></LoadingComponent>)
     } else {
-      if (movies.length <= 0) { return (<ErrorComponent></ErrorComponent>) }
+      if (movies.length <= 0) { return (<ErrorComponent message={LabelConstant.SOMETHING_WENT_WRONG} />) }
     }
 
     const movieList = movies.map((movie) => <MovieComponent key={movie.id} movie={movie}></MovieComponent>);

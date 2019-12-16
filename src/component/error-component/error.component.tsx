@@ -4,7 +4,10 @@ import { LabelConstant } from '../../constant/label.constant';
 
 import './error.component.css';
 
-export default class ErrorComponent extends React.Component {
+interface ErrorProps {
+  message: string
+}
+export default class ErrorComponent extends React.Component<ErrorProps> {
 
   render() {
     return (
@@ -16,7 +19,7 @@ export default class ErrorComponent extends React.Component {
           </div>
 
         <h1>{LabelConstant.ERROR}:
-          <small>{LabelConstant.SOMETHING_WENT_WRONG}</small></h1>
+          <small>{this.props.message}</small></h1>
         </div>
       </div>
     );

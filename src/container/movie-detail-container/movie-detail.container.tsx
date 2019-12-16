@@ -44,7 +44,7 @@ class MovieDetailContainer extends React.Component<ReduxType> {
     if (loading) {
       return (<LoadingComponent></LoadingComponent>)
     } else {
-      if (movie.id.toString() !== movieId) { return (<ErrorComponent></ErrorComponent>) }
+      if (movie.id.toString() !== movieId) { return (<ErrorComponent message={LabelConstant.SOMETHING_WENT_WRONG} />) }
     }
 
     const casts = movie.casts.map((cast) => <CreditComponent key={cast.id} name={cast.name}

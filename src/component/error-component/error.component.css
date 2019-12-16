@@ -16,6 +16,8 @@ h1 {
 
 h1 small {
 	display: block;
+
+	text-transform: capitalize;
 }
 
 .site {

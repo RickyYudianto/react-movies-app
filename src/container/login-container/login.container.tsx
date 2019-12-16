@@ -10,7 +10,7 @@ import { MenuConstant } from '../../constant/menu.constant';
 import { AppState } from '../../helper/reducer.index';
 import { AccountActionTypes } from '../../type/account.type';
 
-import './register.container.css';
+import './login.container.css';
 
 const mapStateToProps = (state: AppState) => {
   return {}
@@ -24,14 +24,14 @@ const mapDispatcherToProps = (dispatch: Dispatch<AccountActionTypes>) => {
 
 type ReduxType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatcherToProps>;
 
-class RegisterContainer extends React.Component<ReduxType> {
+class LoginContainer extends React.Component<ReduxType> {
   render() {
     return (
       <div>
-        <ErrorComponent message={MenuConstant.REGISTER + ' ' + LabelConstant.PAGE_UNDER_CONSTRUCTION} />
+        <ErrorComponent message={MenuConstant.LOGIN + ' ' + LabelConstant.PAGE_UNDER_CONSTRUCTION} />
       </div>
     );
   }
 
 }
-export default connect(mapStateToProps, mapDispatcherToProps,)(RegisterContainer);
+export default connect(mapStateToProps, mapDispatcherToProps,)(LoginContainer);

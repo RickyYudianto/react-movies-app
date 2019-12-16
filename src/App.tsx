@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import { MenuConstant } from './constant/menu.constant';
 import { PathConstant } from './constant/path.constant';
 import MenuComponent from './component/menu-component/menu.component';
+import LoginContainer from './container/login-container/login.container';
 import MovieContainer from './container/movie-container/movie.container';
 import MovieDetailContainer from './container/movie-detail-container/movie-detail.container';
 import RegisterContainer from './container/register-container/register.container';
@@ -23,7 +24,9 @@ export default class App extends React.Component {
               <Route path={PathConstant.MOVIE + PathConstant.LIST} render={(props) => <MovieContainer {...props} menu={MenuConstant.LIST} />} />
               <Route path={PathConstant.MOVIE + PathConstant.NOW_PLAYING} render={(props) => <MovieContainer {...props} menu={MenuConstant.NOW_PLAYING} />} />
               <Route path={`${PathConstant.MOVIE}${PathConstant.DETAIL}/:movieId`} render={(props) => <MovieDetailContainer {...props} />} />
+              
               <Route path={PathConstant.REGISTER} render={(props) => <RegisterContainer {...props} />} />
+              <Route path={PathConstant.LOGIN} render={(props) => <LoginContainer {...props} />} />
 
               <Route path={PathConstant.ROOT} render={() => <Redirect to={PathConstant.MOVIE + PathConstant.LIST} /> }/>
             </Switch>
