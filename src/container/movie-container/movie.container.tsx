@@ -73,10 +73,10 @@ class MovieContainer extends React.Component<ReduxType, MatchProps> {
           {movieList}
         </div>
         <div className='pagination-wrapper'>
-          <Pagination className='pagination-prev' onClick={() => this.onPrevPage()}>
+          <Pagination className='pagination-prev' onClick={() => this.onPrevPage(page <= 1)}>
             <Pagination.Prev disabled={page <= 1}>{LabelConstant.PREV}</Pagination.Prev>
           </Pagination>
-          <Pagination className='pagination-next' onClick={() => this.onNextPage()}>
+          <Pagination className='pagination-next' onClick={() => this.onNextPage(page >= maxPage)}>
             <Pagination.Next disabled={page >= maxPage}>{LabelConstant.NEXT}</Pagination.Next>
           </Pagination>
         </div>
@@ -84,12 +84,12 @@ class MovieContainer extends React.Component<ReduxType, MatchProps> {
     );
   }
 
-  onNextPage() {
-    this.isMoviePage() ? this.props.nextMoviePage() : this.props.nextNowPlayingPage();
+  onNextPage(disabled: boolean) {
+    if (!disabled) this.isMoviePage() ? this.props.nextMoviePage() : this.props.nextNowPlayingPage();
   }
 
-  onPrevPage() {
-    this.isMoviePage() ? this.props.prevMoviePage() : this.props.prevNowPlayingPage();
+  onPrevPage(disabled: boolean) {
+    if (!disabled) this.isMoviePage() ? this.props.prevMoviePage() : this.props.prevNowPlayingPage();
   }
 
   getMovieData() {

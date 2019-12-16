@@ -1,4 +1,6 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
+
+import Genre from './genre.model';
 
 @Exclude()
 export default class Movie {
@@ -8,7 +10,7 @@ export default class Movie {
   @Expose() poster_path: string = '';
   @Expose() backdrop_path: string = '';
   @Expose() original_title: string = '';
-  @Expose() genre_ids: Array<number> = [];
+  @Expose() genres: Array<Genre> = [];
   @Expose() title: string = '';
   @Expose() vote_average: number = 0;
   @Expose() overview: string = '';

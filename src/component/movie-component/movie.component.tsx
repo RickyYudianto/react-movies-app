@@ -8,6 +8,7 @@ import { EndpointConstant } from '../../constant/endpoint.constant';
 import { FormatConstant } from '../../constant/format.constant';
 import { LabelConstant } from '../../constant/label.constant';
 import { PathConstant } from '../../constant/path.constant';
+import { generateRateColor } from '../../helper/util';
 import Movie from '../../model/movie.model';
 
 import 'react-circular-progressbar/dist/styles.css';
@@ -37,10 +38,10 @@ export default class MovieComponent extends React.Component<MovieProps> {
                                  text={`${percentage * 10}%`} background backgroundPadding={6}
                                  styles={buildStyles({
                                   textColor: 'white',
-                                  pathColor: this.generateRateColor(percentage),
+                                  pathColor: generateRateColor(percentage),
                                   backgroundColor: 'black'
                                 })}/>
-            <h5>{movie.title}</h5>
+            <h5 className='movie-title'>{movie.title}</h5>
           </div>
           <h6>{format(new Date(movie.release_date), FormatConstant.DATE_FORMAT)}</h6>
           <span className='movie-overview'>{movie.overview}</span>
@@ -50,15 +51,5 @@ export default class MovieComponent extends React.Component<MovieProps> {
         </div>
       </div>
     );
-  }
-
-  generateRateColor(rate: number) {
-    if (rate >= 7.0) {
-      return 'green';
-    } else if(rate >= 4.0) {
-      return 'yellow';
-    }
-
-    return 'red';
   }
 }

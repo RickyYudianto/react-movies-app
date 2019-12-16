@@ -11,6 +11,7 @@ import { AppState } from '../../helper/reducer.index';
 import { MovieActionTypes } from '../../type/movie.type';
 
 import './movie-detail.container.css';
+import MovieOverviewComponent from '../../component/movie-overview-component/movie-overview.component';
 
 const mapStateToProps = (state: AppState) => {
   const { movieDetail } = state.movieReducer;
@@ -46,7 +47,7 @@ class MovieDetailContainer extends React.Component<ReduxType> {
     return (
       <div className='movie-container'>
         <div className='movie-container-body'>
-          {movie.id}
+          <MovieOverviewComponent movie={movie} />
         </div>
       </div>
     );

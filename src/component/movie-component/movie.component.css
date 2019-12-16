@@ -1,6 +1,7 @@
 .movie-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   border: 0.5px solid gray;
   margin: 5px;
@@ -31,9 +32,11 @@
   border-bottom: 0.5px solid gray;
 }
 
-h5 {
+.movie-title {
   font-size: 0.83em !important;
   margin: 2px 5px !important;
+
+  align-self: center;
 }
 
 h6 {
@@ -51,8 +54,6 @@ span {
   max-width: 100%;
   margin: 0 auto;
   padding: 2px;
-  
-  font-size: 12px;
 
   line-height: 1;
   -webkit-line-clamp: 9;
@@ -62,7 +63,9 @@ span {
 }
 
 .movie-overview {
-  height: 105px;
+  height: 107px;
+
+  font-size: 12px;
 }
 
 .rate {
