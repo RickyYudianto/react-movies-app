@@ -4,7 +4,7 @@
   justify-content: center;
 }
 
-h2 {
+.animate {
   animation: bounce-in 2s;
 }
 

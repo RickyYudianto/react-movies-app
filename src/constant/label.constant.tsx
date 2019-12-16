@@ -1,4 +1,6 @@
 export class LabelConstant {
+  public static readonly ACTORS: string = 'Actors';
+  public static readonly CREWS: string = 'Crews';
   public static readonly ERROR: string = 'Error';
   public static readonly LIST: string = 'List';
   public static readonly MORE_INFO: string = '>>> More Info';

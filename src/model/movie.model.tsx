@@ -1,5 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 
+import Cast from './cast.model';
+import Crew from './crew.model';
 import Genre from './genre.model';
 
 @Exclude()
@@ -11,6 +13,8 @@ export default class Movie {
   @Expose() backdrop_path: string = '';
   @Expose() original_title: string = '';
   @Expose() genres: Array<Genre> = [];
+  @Expose() casts: Array<Cast> = [];
+  @Expose() crews: Array<Crew> = [];
   @Expose() title: string = '';
   @Expose() vote_average: number = 0;
   @Expose() overview: string = '';

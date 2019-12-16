@@ -1,0 +1,25 @@
+.credit-wrapper {
+  border: 0.5px solid gray;
+  margin: 5px;
+  padding: 10px;
+
+  width: 200px;
+}
+
+.credit-image {
+  width: 100px;
+  height: 120px;
+}
+
+.credit-name {
+  word-break: break-word;
+
+  font-weight: 20px;
+  font-weight: bold;
+}
+
+.credit-job {
+  word-break: break-word;
+
+  font-size: 12px;
+}

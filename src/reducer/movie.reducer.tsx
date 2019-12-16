@@ -82,11 +82,28 @@ export function movieReducer(state = initialState, action: movieActionTypes.Movi
       return Object.assign({}, state, {
         movieDetail: Object.assign({}, state.movieDetail, {
           movie: Object.assign(new Movie(), action.payload),
-          loading: false
         })
       });
     }
     case movieActionTypes.FETCH_DETAIL_MOVIE_FAILED: {
+      return Object.assign({}, state, {
+        movieDetail: Object.assign({}, state.movieDetail, {
+          loading: false
+        })
+      });
+    }
+    case movieActionTypes.FETCH_MOVIE_CREDITS_SUCCESS: {
+      return Object.assign({}, state, {
+        movieDetail: Object.assign({}, state.movieDetail, {
+          movie: Object.assign(new Movie(), state.movieDetail.movie, {
+            casts: [...action.casts],
+            crews: [...action.crews]
+          }),
+          loading: false
+        })
+      });
+    }
+    case movieActionTypes.FETCH_MOVIE_CREDITS_FAILED: {
       return Object.assign({}, state, {
         movieDetail: Object.assign({}, state.movieDetail, {
           loading: false

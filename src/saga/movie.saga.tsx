@@ -3,6 +3,8 @@ import { all, put, takeEvery, select } from 'redux-saga/effects';
 
 import * as actions from '../action/movie.action';
 import { convertJsonToArrayOfObject, convertJsonToObject } from '../helper/util';
+import Cast from '../model/cast.model';
+import Crew from '../model/crew.model';
 import Movie from '../model/movie.model';
 import { getListMaxPage, getListPage, getNowPlayingMaxPage, getNowPlayingPage } from '../reducer/movie.reducer';
 import * as services from '../service/movie.service';
@@ -81,8 +83,23 @@ export function* fetchDetailMovie(action: any) {
     const movie: Movie = convertJsonToObject(Movie, response.data);
 
     yield put(actions.fetchDetailMovieSuccessAction(movie));
+    yield put(actions.fetchMovieCreditsAction(action.movieId));
   } catch (error) {
     yield put(actions.fetchDetailMovieFailedAction());
+    yield calledError(error.message);
+  }
+}
+
+export function* fetchMovieCredits(action: any) {
+  try {
+    const response = yield services.getMovieCredits(action.movieId);
+
+    const casts: Array<Cast> = convertJsonToArrayOfObject(Cast, response.data.cast);
+    const crews: Array<Crew> = convertJsonToArrayOfObject(Crew, response.data.crew);
+
+    yield put(actions.fetchMovieCreditsSuccessAction(casts, crews));
+  } catch (error) {
+    yield put(actions.fetchMovieCreditsFailedAction());
     yield calledError(error.message);
   }
 }
@@ -112,6 +129,8 @@ export function* movieSaga() {
     takeEvery(movieActionTypes.NEXT_NOW_PLAYING_PAGE_MOVIE, nextNowPlayingPageMovies),
     takeEvery(movieActionTypes.PREV_NOW_PLAYING_PAGE_MOVIE, prevNowPlayingPageMovies),
 
-    takeEvery(movieActionTypes.FETCH_DETAIL_MOVIE, fetchDetailMovie)
+    takeEvery(movieActionTypes.FETCH_DETAIL_MOVIE, fetchDetailMovie),
+
+    takeEvery(movieActionTypes.FETCH_MOVIE_CREDITS, fetchMovieCredits)
   ]);
 }

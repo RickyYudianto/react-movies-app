@@ -15,3 +15,7 @@ export async function getNowPlayingMovies(params: any = {}) {
 export async function getMovieDetail(id: number) {
   return await apiHelper.get(EndpointConstant.MOVIE + '/' + id);
 }
+
+export async function getMovieCredits(id: number) {
+  return await apiHelper.get(EndpointConstant.MOVIE + '/' + id + EndpointConstant.CREDITS);
+}

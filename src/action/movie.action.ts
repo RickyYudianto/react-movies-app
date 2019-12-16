@@ -1,3 +1,5 @@
+import Cast from '../model/cast.model'
+import Crew from '../model/crew.model'
 import Movie from '../model/movie.model'
 import * as movieActionTypes from '../type/movie.type'
 
@@ -84,5 +86,26 @@ export function fetchDetailMovieSuccessAction(payload: Movie): movieActionTypes.
 export function fetchDetailMovieFailedAction(): movieActionTypes.MovieActionTypes {
   return {
     type: movieActionTypes.FETCH_DETAIL_MOVIE_FAILED
+  }
+}
+
+export function fetchMovieCreditsAction(movieId: string): movieActionTypes.MovieActionTypes {
+  return {
+    type: movieActionTypes.FETCH_MOVIE_CREDITS,
+    movieId
+  }
+}
+
+export function fetchMovieCreditsSuccessAction(casts: Array<Cast>, crews: Array<Crew>): movieActionTypes.MovieActionTypes {
+  return {
+    type: movieActionTypes.FETCH_MOVIE_CREDITS_SUCCESS,
+    casts,
+    crews
+  }
+}
+
+export function fetchMovieCreditsFailedAction(): movieActionTypes.MovieActionTypes {
+  return {
+    type: movieActionTypes.FETCH_MOVIE_CREDITS_FAILED
   }
 }

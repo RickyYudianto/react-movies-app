@@ -68,7 +68,7 @@ class MovieContainer extends React.Component<ReduxType, MatchProps> {
     const movieList = movies.map((movie) => <MovieComponent key={movie.id} movie={movie}></MovieComponent>);
     return (
       <div className='movie-container'>
-        <h2>{this.isMoviePage() ? LabelConstant.LIST : LabelConstant.NOW_PLAYING}</h2>
+        <h2 className='animate'>{this.isMoviePage() ? LabelConstant.LIST : LabelConstant.NOW_PLAYING}</h2>
         <div className='movie-container-body'>
           {movieList}
         </div>
