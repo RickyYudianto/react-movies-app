@@ -24,7 +24,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatcherToProps = (dispatch: Dispatch<MovieActionTypes>) => {
   return {
-      fetchMovieDetail: (movieId: string) => dispatch(movieActions.fetchDetailMovieAction(movieId)),
+    fetchMovieDetail: (movieId: string) => dispatch(movieActions.fetchDetailMovieAction(movieId)),
   }
 }
 

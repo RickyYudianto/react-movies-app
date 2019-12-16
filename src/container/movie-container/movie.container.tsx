@@ -10,11 +10,11 @@ import ErrorComponent from '../../component/error-component/error.component';
 import LoadingComponent from '../../component/loading-component/loading.component';
 import MovieComponent from '../../component/movie-component/movie.component';
 import { LabelConstant } from '../../constant/label.constant';
+import { MenuConstant } from '../../constant/menu.constant';
 import { AppState } from '../../helper/reducer.index';
 import { MovieActionTypes } from '../../type/movie.type';
 
 import './movie.container.css';
-import { MenuConstant } from '../../constant/menu.constant';
 
 interface MatchParams {
   menu: string;
@@ -33,13 +33,13 @@ const mapStateToProps = (state: AppState, route: MatchProps) => {
 
 const mapDispatcherToProps = (dispatch: Dispatch<MovieActionTypes>) => {
   return {
-      fetchMovies: () => dispatch(movieActions.fetchMovieAction()),
-      nextMoviePage: () => dispatch(movieActions.nextMoviePageAction()),
-      prevMoviePage: () => dispatch(movieActions.prevMoviePageAction()),
+    fetchMovies: () => dispatch(movieActions.fetchMovieAction()),
+    nextMoviePage: () => dispatch(movieActions.nextMoviePageAction()),
+    prevMoviePage: () => dispatch(movieActions.prevMoviePageAction()),
 
-      fetchNowPlaying: () => dispatch(movieActions.fetchNowPlayingMovieAction()),
-      nextNowPlayingPage: () => dispatch(movieActions.nextNowPlayingPageAction()),
-      prevNowPlayingPage: () => dispatch(movieActions.prevNowPlayingPageAction())
+    fetchNowPlaying: () => dispatch(movieActions.fetchNowPlayingMovieAction()),
+    nextNowPlayingPage: () => dispatch(movieActions.nextNowPlayingPageAction()),
+    prevNowPlayingPage: () => dispatch(movieActions.prevNowPlayingPageAction())
   }
 }
 
